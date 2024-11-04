@@ -1,4 +1,4 @@
-name: "dsod24-github-ejs-build"
+name: "dsod24-kryptostream-app"
 on: 
   workflow_dispatch:
     inputs:
@@ -20,7 +20,7 @@ on:
       docker_image_name:
         required: true
         type: string
-        default: "ejs"
+        default: "kryptostream-app"
         description: "Docker Image name"
       xr_enable_scan:
         required: true
