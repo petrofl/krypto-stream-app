@@ -122,9 +122,13 @@ jobs:
 
       - name: Docker Scan
         run: |
-          echo "digest=$(docker images --no-trunc --quiet ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }})" >> $GITHUB_OUTPUT
-          jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
-          jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} --fail=${{ github.event.inputs.xr_override_fail_build }} --vuln
+          if [ ${{ github.event.inputs.xr_enable_scan }} == 'true' ]; then
+            echo "digest=$(docker images --no-trunc --quiet ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }})" >> $GITHUB_OUTPUT
+            jf docker pull ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
+            jf docker scan ${{ vars.JF_URL }}/${{ env.DOCKER_REPO }}/${{ env.IMAGE_NAME }}:${{ github.run_number }} --fail=${{ github.event.inputs.xr_override_fail_build }} --vuln
+          else
+            echo "Skip Xray scanning!!!"
+          fi
       
       - name: Publish Build Info
         run: |
