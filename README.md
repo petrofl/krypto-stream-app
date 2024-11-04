@@ -1,6 +1,6 @@
 # KryptoStream (JFrog DevSecOps Days 2024)
 
-<img src="https://raw.githubusercontent.com/etingertal/krypto-stream-app/refs/heads/main/public/images/kryptostream-logo.png" alt="KryptoStream" width="50%" style="margin: 20px;"/>
+<img src="https://raw.githubusercontent.com/etingertal/krypto-stream-app/refs/heads/main/public/images/kryptostream-logo.png" alt="KryptoStream" width="30%" style="margin: 20px;"/>
 
 ## Overview
 KryptoStream application designed to help users manage, track, and optimize their financial activities. With this app you can include budgeting, expense tracking, investment management, bill payment, and savings tools. 
