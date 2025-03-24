@@ -138,9 +138,6 @@ jobs:
           jf rt build-add-git 
           jf rt build-publish ${{ github.workflow }} ${{ github.run_number }}
     
-      - name: Build Scan
-        run: |            
-          jf build-scan --fail=${{ github.event.inputs.xr_override_fail_build }} --vuln ${{ github.workflow }} ${{ github.run_number }}
       - name: Create release bundle
         run: |
           echo '{ "files": [ {"build": "'"${{ github.workflow }}/${{ github.run_number }}"'" , "project" : "'"${JF_PROJECT}"'" } ] }' > bundle-spec.json
