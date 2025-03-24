@@ -136,14 +136,14 @@ jobs:
         run: |
           jf rt build-collect-env
           jf rt build-add-git 
-          jf rt build-publish ${{ github.GITHUB_WORKFLOW }} ${{ github.run_number }}
+          jf rt build-publish ${{ github.workflow }} ${{ github.run_number }}
     
       - name: Build Scan
         run: |            
-          jf build-scan --fail=${{ github.event.inputs.xr_override_fail_build }} --vuln ${{ github.GITHUB_WORKFLOW }} ${{ github.run_number }}
+          jf build-scan --fail=${{ github.event.inputs.xr_override_fail_build }} --vuln ${{ github.workflow }} ${{ github.run_number }}
       - name: Create release bundle
         run: |
-          echo '{ "files": [ {"build": "'"${{ github.GITHUB_WORKFLOW }}/${{ github.run_number }}"'" , "project" : "'"${JF_PROJECT}"'" } ] }' > bundle-spec.json
+          echo '{ "files": [ {"build": "'"${{ github.workflow }}/${{ github.run_number }}"'" , "project" : "'"${JF_PROJECT}"'" } ] }' > bundle-spec.json
           cat  ./bundle-spec.json
           jf release-bundle-create ${{github.GITHUB_WORKFLOW}}-evd-flow ${{ github.run_number }} --signing-key ${{ secrets.RB_KEY }} --spec bundle-spec.json --sync=true 
           VER_LINK=${{ vars.JF_URL }}'/ui/artifactory/lifecycle/?bundleName='${{ github.actor }}-evidence-training'&bundleToFlash='${{ github.actor }}-evd-flow'&releaseBundleVersion='${{ github.run_number }}'&repositoryKey=release-bundles-v2&activeKanbanTab=promotion'
