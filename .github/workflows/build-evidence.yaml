@@ -142,6 +142,6 @@ jobs:
         run: |
           echo '{ "files": [ {"build": "'"${{ github.workflow }}/${{ github.run_number }}"'" , "project" : "'"${{vars.JF_PROJECT}}"'" } ] }' > bundle-spec.json
           cat  ./bundle-spec.json
-          jf release-bundle-create ${{github.github.workflow}}-release-bundle ${{ github.run_number }} --signing-key ${{ secrets.RB_KEY }} --spec bundle-spec.json --sync=true 
+          jf release-bundle-create ${{github.workflow}}-release-bundle ${{ github.run_number }} --signing-key ${{ secrets.RB_KEY }} --spec bundle-spec.json --sync=true 
           VER_LINK=${{ vars.JF_URL }}'/ui/artifactory/lifecycle/?bundleName='${{ github.workflow }}-release-bundle'&bundleToFlash='${{ github.workflow }}--release-bundle'&releaseBundleVersion='${{ github.run_number }}'&repositoryKey=release-bundles-v2&activeKanbanTab=promotion'
-          echo '📦 Release bundle ['${{github.github.workflow}}-release-bundle:${{ github.run_number }}']('${VER_LINK}') created' >> $GITHUB_STEP_SUMMARY
+          echo '📦 Release bundle ['${{github.workflow}}-release-bundle:${{ github.run_number }}']('${VER_LINK}') created' >> $GITHUB_STEP_SUMMARY
