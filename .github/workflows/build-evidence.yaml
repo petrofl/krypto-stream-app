@@ -148,6 +148,7 @@ jobs:
       - name: Attach SAST output as evidence
         run: |
           jf audit --sast --format json > sast_results.json
+          cat sast_results.json
           jf evd create --key "${{ secrets.PRIVATE_KEY }}" --key-alias ${{ secrets.KEY_ALIAS }} \
              --release-bundle ${{github.workflow}}-release-bundle --release-bundle-version ${{ github.run_number }} \
              --predicate ./sast_results.json --predicate-type https://jfrog.com/evidence/approval/v1 
