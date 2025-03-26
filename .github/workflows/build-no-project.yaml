@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       rt_npm_remote_repo_id:
-        required: true
+        required: true.ynl
         type: string
         default: "dsod24-npm-dev-remote"
         description: "Artifactory Repository Name"
