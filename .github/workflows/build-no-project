@@ -1,4 +1,4 @@
-name: "rb-kryptostream-app"
+name: "ptt25-b-kryptostream-app"
 on: 
   workflow_dispatch:
     inputs:
@@ -162,4 +162,3 @@ jobs:
            echo 'Approval of Release bundle ${{ github.actor }}-evd-flow':'${{ github.run_number }} succeded' >> $GITHUB_STEP_SUMMARY
            
         
-
