@@ -158,7 +158,7 @@ jobs:
           cat sast_results.json
           jf evd create --key "${{ secrets.PRIVATE_KEY }}" --key-alias ${{ secrets.KEY_ALIAS }} \
              --release-bundle ${{github.workflow}}-release-bundle --release-bundle-version ${{ github.run_number }} \
-             --predicate ./sast_results.json --predicate-type https://jfrog.com/evidence/approval/v1 
+             --predicate ./sast_results.json --predicate-type https://jfrog.com/evidence/approval/v1 --project ${{vars.JF_PROJECT}}
            echo 'Approval of Release bundle ${{ github.actor }}-evd-flow':'${{ github.run_number }} succeded' >> $GITHUB_STEP_SUMMARY
            
         
