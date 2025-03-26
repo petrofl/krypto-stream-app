@@ -1,4 +1,4 @@
-name: "ptt25-b-kryptostream-app"
+name: "rb-kryptostream-app"
 on: 
   workflow_dispatch:
     inputs:
