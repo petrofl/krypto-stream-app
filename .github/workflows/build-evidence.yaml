@@ -154,7 +154,7 @@ jobs:
           echo '📦 Release bundle ['${{github.workflow}}-release-bundle:${{ github.run_number }}']('${VER_LINK}') created' >> $GITHUB_STEP_SUMMARY
       - name: Attach SAST output as evidence
         run: |
-          jf audit --sast --format json > sast_results.json
+          jf audit --sast  --format sarif > sast_results.json
           cat sast_results.json
           jf evd create --key "${{ secrets.PRIVATE_KEY }}" --key-alias ${{ secrets.KEY_ALIAS }} \
              --release-bundle ${{github.workflow}}-release-bundle --release-bundle-version ${{ github.run_number }} \
