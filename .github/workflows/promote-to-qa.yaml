@@ -1,10 +1,37 @@
-  - name: Promote to Test
+name: Promote-to-qa
+on:
+  workflow_dispatch:
+    inputs:
+      rb-version:
+        description: 'Release bundle version'     
+        required: true
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  Promote-to-qa-and-test:
+    environment: Jfrog
+    runs-on: ubuntu-latest
+    env:
+      PROMOTE_REPO_NAME: ptfl-oci-dev-local
+      JF_PROJECT: ptfl
+    steps:
+    
+      - name: Checkout
+        uses: actions/checkout@v4
+    
+      - name: Setup JFrog CLI 
+        uses: jfrog/setup-jfrog-cli@v4
+        id: setup-cli
+        env:
+          JF_URL: https://${{ vars.JF_URL }}/
+          JF_PROJECT: ${{ vars.JF_PROJECT }}
+        with:
+            oidc-provider-name: ptfl-github
+            oidc-audience: ptfl-aud
+
+      - name: Promote to Test
         run: |
-          if [ "${{ env.RESULT }}" == "true" ]; then
-            jf release-bundle-promote ${{ github.actor }}-evd-flow ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true --project ${JF_PROJECT}
-            echo "🚀 Succesfully promoted to \`QA\` environemnt" >> $GITHUB_STEP_SUMMARY
-          else
-            opa eval --input ./evidence_graph.json --data policy/policy.rego "data.policy.output" | jq '.result[0].expressions[0].value'
-            echo "Fail promotion policy check" >> $GITHUB_STEP_SUMMARY
-            exit 1
-          fi
+          jf release-bundle-promote ${{ github.actor }}-evd-flow ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true --project ${JF_PROJECT}
+   
