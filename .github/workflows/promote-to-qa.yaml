@@ -33,5 +33,5 @@ jobs:
 
       - name: Promote to Test
         run: |
-          jf release-bundle-promote ${{ github.actor }}-evd-flow ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true --project ${JF_PROJECT}
+          jf release-bundle-promote ptt25-b-kryptostream-app-release-bundle ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true --project ${JF_PROJECT}
    
