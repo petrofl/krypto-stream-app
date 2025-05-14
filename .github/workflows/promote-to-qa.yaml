@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PROMOTE_REPO_NAME: ptfl-oci-dev-local
-      JF_PROJECT: ptfl
     steps:
     
       - name: Checkout
@@ -33,5 +32,5 @@ jobs:
 
       - name: Promote to Test
         run: |
-          jf release-bundle-promote ptt25-b-kryptostream-app-release-bundle ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true --project ${JF_PROJECT}
+          jf release-bundle-promote ptt25-b-kryptostream-app-release-bundle ${{ inputs.rb-version }} QA --signing-key ${{ secrets.RB_KEY }} --sync=true 
    
