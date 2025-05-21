@@ -156,10 +156,14 @@ jobs:
         run: |
           jf audit --sast  --format sarif > sast_results.json
           cat sast_results.json
+          echo "# My Markdown File" > my_local_file.md
+          echo "" >> my_local_file.md
+          echo "Hello there! This is a simple Markdown file." >> my_local_file.md
+          echo "" >> my_local_file.md
+          echo "---" >> my_local_file.md
+          echo "" >> my_local_file.md
+          echo "Here's a link to [Google](https://www.google.com)." >> my_local_file.md
           jf evd create --key "${{ secrets.PRIVATE_KEY }}" --key-alias ${{ secrets.KEY_ALIAS }} \
              --release-bundle ${{github.workflow}}-release-bundle --release-bundle-version ${{ github.run_number }} \
-             --predicate ./sast_results.json --predicate-type https://jfrog.com/evidence/approval/v1 --project ${{vars.JF_PROJECT}}
+             --predicate ./sast_results.json --predicate-type https://jfrog.com/evidence/approval/v1  --markdown my_local_file.md --project ${{vars.JF_PROJECT}}
            echo 'Approval of Release bundle ${{ github.actor }}-evd-flow':'${{ github.run_number }} succeded' >> $GITHUB_STEP_SUMMARY
-           
-        
-
