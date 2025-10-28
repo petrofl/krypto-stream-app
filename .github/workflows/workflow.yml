@@ -1,26 +1,26 @@
-name: "ppt2-kryptostream-app"
+name: "sw-kryptostream-app"
 on: 
   workflow_dispatch:
     inputs:
       rt_npm_remote_repo_id:
         required: true
         type: string
-        default: "dsod24-npm-dev-remote"
+        default: "kryptostream-npm-dev-remote"
         description: "Artifactory Repository Name"
       rt_npm_curation_remote_repo_id:
         required: true
         type: string
-        default: "dsod24-npm-curated-dev-remote"
+        default: "kryptostream-npm-curated-dev-remote"
         description: "NPM Curation Repository Name"
       rt_docker_repo:
         required: true
         type: string
-        default: "dsod24-docker-dev-fed"
+        default: "kryptostream-docker-dev-fed"
         description: "Artifactory Docker repository"
       docker_image_name:
         required: true
         type: string
-        default: "pt-kryptostream-app"
+        default: "sw-kryptostream-app"
         description: "Docker Image name"
       xr_enable_scan:
         required: true
